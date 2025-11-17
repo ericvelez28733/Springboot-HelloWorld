@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'M3'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,9 +15,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                withMaven(maven: 'M3') {
-                    sh 'mvn clean package -DskipTests'
-                }
+                sh 'mvn -version'
+                sh 'mvn clean package -DskipTests'
             }
         }
     }
@@ -24,4 +27,5 @@ pipeline {
         }
     }
 }
+
 
