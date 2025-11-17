@@ -1,23 +1,20 @@
-pipeline {
-    agent any
+package com.example.demo;
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/YOUR_USERNAME/springboot-helloworld.git'
-            }
-        }
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-    }
+@SpringBootApplication
+@RestController
+public class DemoApplication {
 
-    post {
-        success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-        }
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	}
+
+	@GetMapping("/")
+	public String hello() {
+		return "Hello World from Spring Boot!";
+	}
 }
