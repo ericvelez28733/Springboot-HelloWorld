@@ -1,12 +1,13 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/YOUR_USERNAME/springboot-helloworld.git'
-            }
-        }
+   stage('Checkout') {
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/ericvelez28733/Springboot-HelloWorld.git'
+    }
+}
+
 
         stage('Build') {
             steps {
