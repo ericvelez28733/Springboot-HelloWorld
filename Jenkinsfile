@@ -1,13 +1,13 @@
 pipeline {
     agent any
 
-   stage('Checkout') {
-    steps {
-        git branch: 'main',
-            url: 'https://github.com/ericvelez28733/Springboot-HelloWorld.git'
-    }
-}
-
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/ericvelez28733/Springboot-HelloWorld.git'
+            }
+        }
 
         stage('Build') {
             steps {
@@ -21,4 +21,5 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
     }
+}
 
